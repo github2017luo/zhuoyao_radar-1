@@ -46,9 +46,3 @@ Cookie存储设定
 界面优化，侧边栏筛选    
 点击地图自动筛选功能    
 
-### 支持我们
-
-<img src="http://vitechliu.com/assets/images/zfb.jpg" width="270" height="420" alt="图片名称" align=center>
-
-捐赠的金额将被用于雷达的开发，服务器的维护等。  
-并且您可以联系qq2165386299获取机器人配置的技术支持、使用更稳定的雷达地址等。  
