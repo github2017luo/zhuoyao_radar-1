@@ -68,7 +68,7 @@ const FILTER = {
   })
 };
 const SOCKET = {
-  RECONNECT_TIME: 1000, // 断线重连时间
+  RECONNECT_TIME: 1000*60, // 断线重连时间
   URL:
     'wss://publicld.gwgo.qq.com?account_value=0&account_type=0&appid=0&token=0' // 官方妖灵查询接口
 };

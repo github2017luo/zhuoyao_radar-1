@@ -9,6 +9,7 @@
     "build": "cross-env NODE_ENV='production' node ./build/build.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "coordtransform": "^2.1.2",
     "jquery": "^3.4.1"
   },

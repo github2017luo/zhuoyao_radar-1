@@ -8,7 +8,8 @@
       <el-button size="mini" @click="getYaolingInfo">妖灵</el-button>
       <!-- <el-button size="mini" @click="exportPosition">导出位置</el-button>
       <el-button size="mini" @click="importPosition">导入位置</el-button> -->
-      <el-button size="mini" type="warning" @click="debug = !debug">Debug</el-button>
+        <el-button size="mini" @click="getAndroid">Android</el-button>
+        <el-button size="mini" @click="getYaoIOS">IOS</el-button>
     </div>
     <div id="qmap"></div>
   </div>
@@ -20,6 +21,7 @@ import bot from './components/bot';
 import map from './components/map';
 import RadarWebSocket from './components/socket';
 import RightNav from './components/rightNav';
+import axios from 'axios'
 import {
   getLocalStorage,
   setLocalStorage,
@@ -226,12 +228,29 @@ export default {
           this.fit[0] === 'special' ||
           this.fit.indexOf(item.sprite_id) > -1
         ) {
-            //console.info(item)
+            console.info(item)
           this.addMarkers(item);
+            var url = "/api/zhuoyao/insert";
+            // post有两个参数
+            //参数1:请求的路径
+            //参数2:提交的参数
+            //提交参数的两种形态:
+            //          1.可以直接传入字符串 name=张三&age=19
+            //          2.可以以对象的形式传入{name:"三",age:19}
+
+            axios.post(url, item).then(function(res) {
+
+            });
         }
       });
-      this.notify('筛选成功11!');
+      this.notify('筛选成功');
     },
+      getYaoIOS: function() {
+          console.info("")
+      },
+      getAndroid: function() {
+          console.info("")
+      },
     addStatusWithoutNewline: function(str) {
       this.status += str;
     },

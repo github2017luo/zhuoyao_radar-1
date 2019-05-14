@@ -14,14 +14,13 @@ var compiler = webpack(webpackConfig);
 const devServerOptions = {
   disableHostCheck: true,
   host: '0.0.0.0',
-  after(app) {
-    // 自动打开浏览器
-    // if (opts.BUILD_SKIN) {
-    //   opn(
-    //     `http://localhost:3000/index.html`
-    //   );
-    // }
-  }
+    proxy: {
+        "/api": {
+            target: "http://localhost:8080",
+            // changeOrigin是关键，如果不加这个就无法跳转请求
+            changeOrigin: true,
+        }
+    },
 };
 
 WebpackDevServer.addDevServerEntrypoints(webpackConfig, devServerOptions);
