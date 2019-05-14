@@ -5,7 +5,7 @@ const WebpackDevServer = require('webpack-dev-server');
 
 // 遍历每个entry，加入dev-server client
 Object.keys(webpackConfig.entry).forEach(function(name) {
-  let _devServer = `webpack-dev-server/client?http://localhost:3000`;
+  let _devServer = `webpack-dev-server/client?http://60.205.179.3:3000`;
   webpackConfig.entry[name] = [_devServer].concat(webpackConfig.entry[name]);
 });
 
@@ -13,7 +13,7 @@ var compiler = webpack(webpackConfig);
 
 const devServerOptions = {
   disableHostCheck: true,
-  host: '0.0.0.0',
+  host: '60.205.179.3',
     proxy: {
         "/api": {
             target: "http://101.132.193.87:3001",
@@ -25,6 +25,6 @@ const devServerOptions = {
 
 WebpackDevServer.addDevServerEntrypoints(webpackConfig, devServerOptions);
 const devServer = new WebpackDevServer(compiler, devServerOptions);
-devServer.listen(3000, '0.0.0.0', () => {
+devServer.listen(3000, '60.205.179.3', () => {
   console.log(`Starting server ...`);
 });
