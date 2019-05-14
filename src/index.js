@@ -6,6 +6,7 @@
 import Vue from 'vue';
 window.$ = window.jQuery = require('jquery');
 import App from './App';
+import index from './index';
 import { Button, Switch, Notification,MessageBox } from 'element-ui';
 import './index.less';
 import 'element-ui/lib/theme-chalk/button.css';
@@ -23,7 +24,7 @@ Vue.use(Switch);
 let vueapp = new Vue({
   el: '#root',
   template: '<App/>',
-  components: { App }
+  components: { App ,index}
 });
 
 window.app = vueapp.$children[0];

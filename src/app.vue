@@ -8,8 +8,8 @@
       <el-button size="mini" @click="getYaolingInfo">妖灵</el-button>
       <!-- <el-button size="mini" @click="exportPosition">导出位置</el-button>
       <el-button size="mini" @click="importPosition">导入位置</el-button> -->
-        <el-button size="mini" @click="getAndroid">Android</el-button>
-        <el-button size="mini" @click="getYaoIOS">IOS</el-button>
+        <!--<el-button size="mini" @click="getAndroid">Android</el-button>-->
+        <!--<el-button size="mini" @click="getYaoIOS">IOS</el-button>-->
     </div>
     <div id="qmap"></div>
   </div>

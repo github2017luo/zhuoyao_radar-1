@@ -16,7 +16,7 @@ const devServerOptions = {
   host: '0.0.0.0',
     proxy: {
         "/api": {
-            target: "http://localhost:8080",
+            target: "http://101.132.193.87:3001",
             // changeOrigin是关键，如果不加这个就无法跳转请求
             changeOrigin: true,
         }
