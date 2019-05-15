@@ -98,12 +98,9 @@ module.exports = {
                 null,
                 new qq.maps.Size(40, 40)
             );
-            //console.info(yl.latitude + "," + yl.longtitude)
-            //console.info(yl.latitude / 1e6 + "," + yl.longtitude / 1e6)
-
             var zuobiao  =this.gcj02towgs84(yl.latitude / 1e6 , yl.longtitude / 1e6);
-            console.info(this.gcj02towgs84(yl.latitude / 1e6 , yl.longtitude / 1e6))
-            console.info(fintime)
+            //console.info(this.gcj02towgs84(yl.latitude / 1e6 , yl.longtitude / 1e6))
+            //console.info(fintime)
             let position = new qq.maps.LatLng(yl.latitude / 1e6, yl.longtitude / 1e6);
             let marker = new qq.maps.Marker({
                 position: position,
@@ -119,7 +116,7 @@ module.exports = {
                     position: position,
                     offset: new qq.maps.Size(-20, 10),
                     map: this.map,
-                    content: zuobiao+"/"+fintime,
+                    content: fintime,
                     style: {
                         border: "none",
                         backgroundColor: "rgba(255,255,255,.7)",
@@ -140,7 +137,6 @@ module.exports = {
         gcj02towgs84(lat, lng) {
             var lat = +lat;
             var lng = +lng;
-console.info(lat,lng);
             var dlat = this.transformlat(lng - 105.0, lat - 35.0);
             var dlng = this.transformlng(lng - 105.0, lat - 35.0);
             var radlat = lat / 180.0 * PI;

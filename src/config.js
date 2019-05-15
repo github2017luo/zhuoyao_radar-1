@@ -10,7 +10,7 @@ const FILTER = {
   FILTER_RARE: [
     2000106, // 风雪虎
     2000313, // 银角小妖
-    //2000327, // 小蝙蝠
+    2000327, // 小蝙蝠
     2000265, // 香玉
     2000238, // 颜如玉
     //2000109, // 螺莉莉
@@ -18,7 +18,7 @@ const FILTER = {
     //2000028, //小蝌蚪
     //2000191, // 麻将仔 大量出现
     //2000242, // 夜行枭
-    //2000147, // 檐上喵
+    2000147, // 檐上喵
     //2000188 // CoCo熊   todo: 檐上喵&CoCo熊官方雷达貌似不提供搜索
   ],
   FILTER_NEST: [
@@ -68,7 +68,7 @@ const FILTER = {
   })
 };
 const SOCKET = {
-  RECONNECT_TIME: 1000*60, // 断线重连时间
+  RECONNECT_TIME: 1000*100, // 断线重连时间
   URL:
     'wss://publicld.gwgo.qq.com?account_value=0&account_type=0&appid=0&token=0' // 官方妖灵查询接口
 };

@@ -235,7 +235,7 @@ Page({
                     break;
 
                   case "1001":
-                    console.log("获取到妖灵数量", l.length), this.getIconConfig(), this.getYaojingsNearby(l);
+                    //console.log("获取到妖灵数量", l.length), this.getIconConfig(), this.getYaojingsNearby(l);
                     break;
 
                   case "1002":

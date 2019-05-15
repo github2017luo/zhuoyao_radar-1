@@ -18,17 +18,6 @@
       <div class="side-nav" v-show="showMenu">
         <div class="side-header">
           <h2>捉妖雷达 - Web</h2>
-          <p>Version: {{ version }}</p>
-          <p>捉妖雷达开发者群：1025673494</p>
-          <p>虚拟定位全家暴毙</p>
-          <iframe
-            src="https://ghbtns.com/github-btn.html?user=liuzirui1122&repo=zhuoyao_radar&type=star&count=true&size=large"
-            frameborder="0"
-            scrolling="0"
-            width="160px"
-            height="30px"
-            style="margin-top:5px"
-          ></iframe>
         </div>
         <div class="side-content">
           <div class="header">筛选</div>
@@ -82,7 +71,7 @@ export default {
         {
           text: '稀有',
           key: 'rare'
-        },
+        }/*,
         {
           text: '1觉',
           key: 't1'
@@ -110,7 +99,7 @@ export default {
         {
           text: '其他所有（慎选）',
           key: 'all'
-        }
+        }*/
       ],
       showMenu: false
     };

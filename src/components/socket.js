@@ -25,7 +25,7 @@ class RadarWebSocket {
     this.socket.onerror = this.socket.onclose = () => {
       setTimeout(() => {
         console.log('websocket reconnect...');
-        this.initSocket();
+          //this.initSocket();
       }, SOCKET.RECONNECT_TIME);
     };
 
