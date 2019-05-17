@@ -5,22 +5,23 @@
             <div id="info"><br/><span v-html="status"></span></div>
         </div>
         <div id="buttons">
-            <!--<el-button size="mini" @click="getYaolingInfo">妖灵</el-button>-->
-            <el-button size="40px" @click="getScanningStart">自动扫描</el-button>
-            <el-button size="40px" @click="getScanningStop">自动扫描关闭</el-button>
+            <el-button size="40px" @click="getScanningStart">妖灵扫描</el-button>
+            <el-button size="40px" @click="getScanningStop">妖灵扫描关闭</el-button>
+            <el-button size="40px" @click="getScanningStartLeiTai">擂台扫描</el-button>
+            <el-button size="40px" @click="getScanningStopLeiTai">擂台扫描关闭</el-button>
             <el-button size="40px" @click="setCountUP">+</el-button>
             <el-button size="40px" @click="setCountDown">-</el-button>
+
             <template>
-            <el-select v-model="name" filterable @change="switchLocale" placeholder="请选择" >
-                <el-option
-                        v-for="item in options"
-                        :key="item.code"
-                        :label="item.name"
-                        :value="item.code"
-                        :aria-selected="11"
-                >
-                </el-option>
-            </el-select>
+                <el-select v-model="name" filterable @change="switchLocale" placeholder="请选择">
+                    <el-option
+                            v-for="item in options"
+                            :key="item.code"
+                            :label="item.name"
+                            :value="item.code"
+                    >
+                    </el-option>
+                </el-select>
             </template>
         </div>
 
@@ -108,12 +109,14 @@
                     longitude: 116.3579177856,
                     latitude: 39.9610780334
                 },
-                count: 0,
-                timer: '',
+                count_yaoling: 0,
+                count_leitai: 0,
+                timer_yaoling: 'timer_yaoling',
+                timer_leitai: 'timer_leitai',
                 options: area.area.provinecs,
-                name: '31',
-                lat:31.2323578200,
-                lon:121.4692062700,
+                name: '31',//默认选中上海
+                lat: 31.2323578200,
+                lon: 121.4692062700,
             };
         },
         mounted() {
@@ -129,7 +132,7 @@
             }
 
             // 初始化地图组件
-            this.initMap(this.lat,this.lon);
+            this.initMap(this.lat, this.lon);
 
             // 初始化websocket
             this.socket = new RadarWebSocket({
@@ -161,20 +164,10 @@
                 .catch(b => {
                 });
 
-            this.addStatus(`捉妖雷达Web版 <br/>
-      版本:${APP_VERSION} <br/>
-      更新日志:<br/>
-      虚拟定位 全家暴毙`);
-
+            this.addStatus('');
             this.$on('botSetup', params => {
                 this.botSetup(params);
             });
-            // window.app = {};
-            // window.app.botSetup = this.botSetup;
-            //this.addStatus("开发者:ZachXia,Vitech");
-            // setTimeout(() => {
-            //   this.notify('提示:点击右下角菜单开始筛选！');
-            // }, 2000);
         },
         methods: {
             /**
@@ -204,18 +197,20 @@
                 return _time;
             },
             setCountUP: function () {
-                this.count += 10
+                this.count_yaoling += 10
+                this.count_leitai += 10
             },
             setCountDown: function () {
-                this.count -= 10
+                this.count_yaoling -= 10
+                this.count_leitai -= 10
             },
 
             switchLocale: function () {
-               //alert(this.name);
-                if(this.name!="31"){
+                //alert(this.name);
+                if (this.name != "31") {
                     this.$notify({
                         title: '警告',
-                        message: ' 非上海省份还在开发中',
+                        message: ' 该省份暂不支持扫描',
                         type: 'warning'
                     });
                 }
@@ -230,7 +225,7 @@
 
             onSocketOpen: function () {
                 this.addStatus('WSS连接开启');
-                console.log('WSS连接开启');
+                //console.log('WSS连接开启');
                 this.notify('WSS连接开启');
                 // 首次连接
                 if (this.firstTime) {
@@ -288,12 +283,7 @@
                 this.status += str + '<br>';
             },
             sendMessage: function (message, requestIndex) {
-                if (message.request_type != '1004') {
-                    this.addStatusWithoutNewline('WSS发送消息：');
-                    this.addStatus(JSON.stringify(message));
-                }
-                //console.log('sendMessage', message);
-                //console.log('send', json2buffer(message));
+
                 this.socket.send(json2buffer(message));
             }
             ,
@@ -301,7 +291,7 @@
              * 自定刷新妖灵数据
              */
             getScanningStart: function () {
-                if (this.timer!='') {
+                if (this.timer_yaoling != 'timer_yaoling') {
 
                     this.$notify({
                         title: '警告',
@@ -316,12 +306,23 @@
                     message: '自动扫描开始',
                     type: 'success'
                 });
-                this.timer = setInterval(this.getTotelNumber, 2000)
+                this.timer_yaoling = setInterval(this.getTotelNumber, 2000)
+                alert(this.timer_yaoling);
             }
             ,
             getScanningStop: function () {
-                clearInterval(this.timer);
-                this.timer='';
+                clearInterval(this.timer_yaoling);
+                this.timer_yaoling = 'timer_yaoling';
+                this.$notify({
+                    title: '成功',
+                    message: '自动扫描关闭',
+                    type: 'success'
+                });
+            }
+            ,
+            getScanningStopLeiTai: function () {
+                clearInterval(this.timer_leitai);
+                this.timer_leitai = 'timer_leitai';
                 this.$notify({
                     title: '成功',
                     message: '自动扫描关闭',
@@ -330,37 +331,70 @@
             }
             ,
             getTotelNumber: function () {
-                if (this.count >= zuobiao.zuobiao.shanghai.length) {
-                    this.count = 0;
+                if (this.count_yaoling >= zuobiao.zuobiao.shanghai.length) {
+                    this.count_yaoling = 0;
                 }
-                if (this.count <0) {
-                    this.count = 0;
+                if (this.count_yaoling < 0) {
+                    this.count_yaoling = 0;
                 }
-                console.info(this.count)
+                //console.info(this.count_yaoling)
                 var e = {
                     request_type: '1001',
-                    longtitude: zuobiao.zuobiao.shanghai[this.count].lon,
-                    latitude: zuobiao.zuobiao.shanghai[this.count].lat,
+                    longtitude: zuobiao.zuobiao.shanghai[this.count_yaoling].lon,
+                    latitude: zuobiao.zuobiao.shanghai[this.count_yaoling].lat,
                     requestid: this.genRequestId('1001'),
                     platform: 0
                 };
-                this.count = this.count + 1
+                this.count_yaoling = this.count_yaoling + 1
                 this.sendMessage(e, '1001');
 
             },
-            getYaolingInfo: function () {
-                if (!this.statusOK || this.botMode) return;
+            getTotelNumberLeiTai: function () {
+                if (this.count_leitai >= zuobiao.zuobiao.shanghai.length) {
+                    this.count_leitai = 0;
+                }
+                if (this.count_leitai < 0) {
+                    this.count_leitai = 0;
+                }
+                //console.info(this.count_leitai)
                 var e = {
-                    request_type: '1001',
-                    longtitude: convertLocation(this.location.longitude),
-                    latitude: convertLocation(this.location.latitude),
-                    requestid: this.genRequestId('1001'),
+                    request_type: '1002',
+                    longtitude: zuobiao.zuobiao.shanghai[this.count_leitai].lon,
+                    latitude: zuobiao.zuobiao.shanghai[this.count_leitai].lat,
+                    requestid: this.genRequestId('1002'),
                     platform: 0
                 };
-                //console.info(e);
-                this.sendMessage(e, '1001');
+                this.count_leitai = this.count_leitai + 1
+                this.sendMessage(e, '1002');
+
             },
 
+            /**
+             * 自定刷新妖灵数据
+             */
+            getScanningStartLeiTai: function () {
+                if (this.timer_leitai != 'timer_leitai') {
+
+                    this.$notify({
+                        title: '警告',
+                        message: '自动扫描已开始，请勿重复点击',
+                        type: 'warning'
+                    });
+                    return
+                }
+
+                this.$notify({
+                    title: '成功',
+                    message: '自动扫描开始',
+                    type: 'success'
+                });
+                //this.timer_leitai = setInterval(this.getTotelNumber, 2000)
+                //34.263416259558504,117.88740631991502
+
+                this.timer_leitai = setInterval(this.getTotelNumberLeiTai, 2000)
+                alert(this.timer_leitai);
+            }
+            ,
             /**
              * 获取擂台数据
              */
