@@ -6,18 +6,31 @@
         </div>
         <div id="buttons">
             <!--<el-button size="mini" @click="getYaolingInfo">妖灵</el-button>-->
-            <el-button size="mini" @click="getScanningStart">自动扫描</el-button>
-            <el-button size="mini" @click="getScanningStop">自动扫描关闭</el-button>
-            <el-button size="mini" @click="setCountUP">+</el-button>
-            <el-button size="mini" @click="setCountDown">-</el-button>
-
-
+            <el-button size="40px" @click="getScanningStart">自动扫描</el-button>
+            <el-button size="40px" @click="getScanningStop">自动扫描关闭</el-button>
+            <el-button size="40px" @click="setCountUP">+</el-button>
+            <el-button size="40px" @click="setCountDown">-</el-button>
+            <template>
+            <el-select v-model="name" filterable @change="switchLocale" placeholder="请选择" >
+                <el-option
+                        v-for="item in options"
+                        :key="item.code"
+                        :label="item.name"
+                        :value="item.code"
+                        :aria-selected="11"
+                >
+                </el-option>
+            </el-select>
+            </template>
         </div>
+
+
         <div id="qmap"></div>
     </div>
 </template>
 <script>
-    import sh_zuobiao from './components/sh_zuobiao';
+    import zuobiao from './components/zhuobiao/zuobiao';
+    import area from './components/zhuobiao/provinces';
     import tempdata from './components/tempdata';
     import mixins from './components/mixins';
     import bot from './components/bot';
@@ -96,7 +109,11 @@
                     latitude: 39.9610780334
                 },
                 count: 0,
-                timer:'',
+                timer: '',
+                options: area.area.provinecs,
+                name: '31',
+                lat:31.2323578200,
+                lon:121.4692062700,
             };
         },
         mounted() {
@@ -112,7 +129,7 @@
             }
 
             // 初始化地图组件
-            this.initMap();
+            this.initMap(this.lat,this.lon);
 
             // 初始化websocket
             this.socket = new RadarWebSocket({
@@ -187,10 +204,22 @@
                 return _time;
             },
             setCountUP: function () {
-                this.count +=10
+                this.count += 10
             },
             setCountDown: function () {
-                this.count -=10
+                this.count -= 10
+            },
+
+            switchLocale: function () {
+               //alert(this.name);
+                if(this.name!="31"){
+                    this.$notify({
+                        title: '警告',
+                        message: ' 非上海省份还在开发中',
+                        type: 'warning'
+                    });
+                }
+
             },
             /**
              * 根据id找到请求的类型
@@ -244,6 +273,7 @@
                         this.notify('发现稀有怪');
                         this.addMarkers(item);
                         var url = "/api/zhuoyao/insert";
+                        console.info(item)
                         axios.post(url, item).then(function (res) {
                         });
                     }
@@ -263,33 +293,54 @@
                     this.addStatus(JSON.stringify(message));
                 }
                 //console.log('sendMessage', message);
-
+                //console.log('send', json2buffer(message));
                 this.socket.send(json2buffer(message));
-            },
+            }
+            ,
             /**
-             * 获取妖灵数据
+             * 自定刷新妖灵数据
              */
             getScanningStart: function () {
+                if (this.timer!='') {
 
-                this.timer =setInterval(this.getTotelNumber, 2000)
+                    this.$notify({
+                        title: '警告',
+                        message: '自动扫描已开始，请勿重复点击',
+                        type: 'warning'
+                    });
+                    return
+                }
 
+                this.$notify({
+                    title: '成功',
+                    message: '自动扫描开始',
+                    type: 'success'
+                });
+                this.timer = setInterval(this.getTotelNumber, 2000)
             }
             ,
             getScanningStop: function () {
-
                 clearInterval(this.timer);
-
+                this.timer='';
+                this.$notify({
+                    title: '成功',
+                    message: '自动扫描关闭',
+                    type: 'success'
+                });
             }
             ,
             getTotelNumber: function () {
-                if(this.count>=sh_zuobiao.shanghai.zuobiao.length){
-                    this.count=0;
+                if (this.count >= zuobiao.zuobiao.shanghai.length) {
+                    this.count = 0;
                 }
-                 console.info(this.count)
+                if (this.count <0) {
+                    this.count = 0;
+                }
+                console.info(this.count)
                 var e = {
                     request_type: '1001',
-                    longtitude:  sh_zuobiao.shanghai.zuobiao[this.count].lon,
-                    latitude:  sh_zuobiao.shanghai.zuobiao[this.count].lat,
+                    longtitude: zuobiao.zuobiao.shanghai[this.count].lon,
+                    latitude: zuobiao.zuobiao.shanghai[this.count].lat,
                     requestid: this.genRequestId('1001'),
                     platform: 0
                 };

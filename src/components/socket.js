@@ -24,8 +24,10 @@ class RadarWebSocket {
     // 断线重连
     this.socket.onerror = this.socket.onclose = () => {
       setTimeout(() => {
-        console.log('websocket reconnect...');
+          console.log('websocket reconnect...');
           //this.initSocket();
+          this.socket.close()
+          this.initSocket();
       }, SOCKET.RECONNECT_TIME);
     };
 

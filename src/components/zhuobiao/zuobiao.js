@@ -1,5 +1,5 @@
-const shanghai = {
-    zuobiao:[
+const  zuobiao= {
+    shanghai:[
         {'lat': 30980000,'lon': 121220000},
         {'lat': 30980000,'lon': 121240000},
         {'lat': 30980000,'lon': 121260000},
@@ -401,8 +401,9 @@ const shanghai = {
         {'lat': 31360000,'lon': 121580000},
         {'lat': 31360000,'lon': 121600000},
 
-    ]}
+    ],
+}
 
 module.exports = {
-    shanghai
+    zuobiao
 };

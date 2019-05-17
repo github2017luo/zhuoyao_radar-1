@@ -31,11 +31,11 @@ module.exports = {
         /**
          * 初始化地图  上海 31.2323578200,121.4692062700
          */
-        initMap() {
+        initMap(lat,lon) {
             this.map = new qq.maps.Map(document.getElementById('qmap'), {
                 center: new qq.maps.LatLng(
-                    31.2323578200,
-                    121.4692062700
+                    // 31.2323578200, 121.4692062700
+                    lat,lon
                 ),
                 zoom: 16 // 地图的中心地理坐标。
             });
