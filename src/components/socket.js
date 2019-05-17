@@ -21,13 +21,13 @@ class RadarWebSocket {
   initSocket() {
     this.socket = new WebSocket(SOCKET.URL);
 
-    // 断线重连
+      // 断线重连
     this.socket.onerror = this.socket.onclose = () => {
       setTimeout(() => {
           console.log('websocket reconnect...');
           //this.initSocket();
-          this.socket.close()
-          this.initSocket();
+          //this.socket.close()
+          //this.initSocket();
       }, SOCKET.RECONNECT_TIME);
     };
 

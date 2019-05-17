@@ -307,7 +307,7 @@
                     type: 'success'
                 });
                 this.timer_yaoling = setInterval(this.getTotelNumber, 2000)
-                alert(this.timer_yaoling);
+                //alert(this.timer_yaoling);
             }
             ,
             getScanningStop: function () {
