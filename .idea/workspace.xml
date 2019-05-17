@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b245c76-f30d-4299-8083-789bf5c3881b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/build/local-server.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/local-server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mixins.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mixins.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,15 +16,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="839">
-              <caret line="322" column="42" lean-forward="true" selection-start-line="322" selection-start-column="42" selection-end-line="322" selection-end-column="42" />
+            <state relative-caret-position="242">
+              <caret line="11" column="68" lean-forward="true" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
               <folding>
                 <element signature="e#718#776#0" expanded="true" />
                 <element signature="e#2318#2801#0" />
                 <element signature="e#3057#3167#0" />
                 <element signature="e#5306#5859#0" />
                 <element signature="e#5961#6125#0" />
-                <element signature="e#6163#6210#0" />
                 <element signature="e#6848#6896#0" />
                 <element signature="e#6406#6469#0" />
               </folding>
@@ -130,7 +128,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>disableHostCheck</find>
       <find>qmap</find>
       <find>axios</find>
       <find>cnpjNumber</find>
@@ -160,6 +157,7 @@
       <find>timer</find>
       <find>count</find>
       <find>buildMarkersByData</find>
+      <find>getScanningStop</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -236,11 +234,6 @@
             <path>
               <item name="zhuoyao_radar" type="b2602c69:ProjectViewProjectNode" />
               <item name="zhuoyao_radar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zhuoyao_radar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zhuoyao_radar" type="462c0819:PsiDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="zhuoyao_radar" type="b2602c69:ProjectViewProjectNode" />
@@ -352,7 +345,7 @@
       <workItem from="1557882266687" duration="15295000" />
       <workItem from="1557971892116" duration="7690000" />
       <workItem from="1558020030839" duration="3417000" />
-      <workItem from="1558059671972" duration="18489000" />
+      <workItem from="1558059671972" duration="19387000" />
     </task>
     <task id="LOCAL-00001" summary="3">
       <created>1557817527686</created>
@@ -396,11 +389,18 @@
       <option name="project" value="LOCAL" />
       <updated>1558071066576</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="7">
+      <created>1558095708008</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1558095708008</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72286000" />
+    <option name="totallyTimeSpent" value="73184000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -441,7 +441,8 @@
     <MESSAGE value="4" />
     <MESSAGE value="5" />
     <MESSAGE value="6" />
-    <option name="LAST_COMMIT_MESSAGE" value="6" />
+    <MESSAGE value="7" />
+    <option name="LAST_COMMIT_MESSAGE" value="7" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/build/webpack.dev.conf.js">
@@ -752,15 +753,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="839">
-          <caret line="322" column="42" lean-forward="true" selection-start-line="322" selection-start-column="42" selection-end-line="322" selection-end-column="42" />
+        <state relative-caret-position="242">
+          <caret line="11" column="68" lean-forward="true" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
           <folding>
             <element signature="e#718#776#0" expanded="true" />
             <element signature="e#2318#2801#0" />
             <element signature="e#3057#3167#0" />
             <element signature="e#5306#5859#0" />
             <element signature="e#5961#6125#0" />
-            <element signature="e#6163#6210#0" />
             <element signature="e#6848#6896#0" />
             <element signature="e#6406#6469#0" />
           </folding>

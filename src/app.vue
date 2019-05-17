@@ -7,8 +7,8 @@
         <div id="buttons">
             <el-button size="40px" @click="getScanningStart">妖灵扫描</el-button>
             <el-button size="40px" @click="getScanningStop">妖灵扫描关闭</el-button>
-            <el-button size="40px" @click="getScanningStartLeiTai">擂台扫描</el-button>
-            <el-button size="40px" @click="getScanningStopLeiTai">擂台扫描关闭</el-button>
+            <!--<el-button size="40px" @click="getScanningStartLeiTai">擂台扫描</el-button>-->
+            <!--<el-button size="40px" @click="getScanningStopLeiTai">擂台扫描关闭</el-button>-->
             <el-button size="40px" @click="setCountUP">+</el-button>
             <el-button size="40px" @click="setCountDown">-</el-button>
 
