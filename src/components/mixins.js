@@ -43,7 +43,7 @@ module.exports = {
             if (_type) {
                 this.messageMap.delete(`msg_${data.requestid}`);
             }
-            console.info(data)
+            //console.info(data)
             switch (_type) {
                 case '10041':
                     this.getVersionFileName(data.filename);
@@ -62,7 +62,7 @@ module.exports = {
                     break;
                 case '1002':
                     var url = "/api/zhuoyao/insertLeiTai";
-                    console.info(data)
+                    //console.info(data)
                     axios.post(url, data.dojo_list).then(function (res) {
                     });
             }
