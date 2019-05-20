@@ -267,10 +267,10 @@
                     ) {
                         this.notify('发现稀有怪');
                         this.addMarkers(item);
-                        var url = "/api/zhuoyao/insert";
-                        console.info(item)
-                        axios.post(url, item).then(function (res) {
-                        });
+                        // var url = "/api/zhuoyao/insert";
+                        // console.info(item)
+                        // axios.post(url, item).then(function (res) {
+                        // });
                     }
                 });
                 this.notify('筛选成功');
