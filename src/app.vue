@@ -224,7 +224,7 @@
             },
 
             onSocketOpen: function () {
-                this.addStatus('WSS连接开启');
+                //this.addStatus('WSS连接开启');
                 //console.log('WSS连接开启');
                 this.notify('WSS连接开启');
                 // 首次连接
